@@ -25,6 +25,30 @@
       "metadata": {
         "description": "Connection string for the storage account to store function app files"
       }
+    },
+    "serviceBusAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the service bus namespace used by this app"
+      }
+    },
+    "cosmosDbAccountName": {
+      "type": "string",
+      "metadata": {
+        "description": "Name of the cosmos db account by this app"
+      }
+    },
+    "sharedResourceGroup": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the shared resource group for this project"
+      }
+    },
+    "cosmosDbDatabaseName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the cosmos db database used by this project"
+      }
     }
   },
   "variables": {
@@ -32,7 +56,9 @@
     "functionAppName": "[concat(parameters('appPrefix'),'-fa')]",
     "functionAppInsightName": "[concat(variables('functionAppName'),'-ai')]",
     "publicApiAppName": "[concat(parameters('appPrefix'),'-as')]",
-    "publicApiAppInsightName": "[concat(variables('publicApiAppName'),'-ai')]"
+    "publicApiAppInsightName": "[concat(variables('publicApiAppName'),'-ai')]",
+    "serviceBusQueueName": "fat-processor",
+    "serviceBusSasTokenName": "monitor-fat-processor"
   },
   "resources": [
     {
@@ -122,6 +148,54 @@
               {
                 "name": "WEBSITE_RUN_FROM_PACKAGE",
                 "value": "1"
+              },
+              {
+                "name": "Apprenticeships_QueueConnection",
+                "value": "[listKeys(resourceId(parameters('sharedResourceGroup'), 'Microsoft.ServiceBus/namespaces/queues/authorizationRules', parameters('serviceBusAccountName'), variables('serviceBusQueueName'), variables('serviceBusSasTokenName')), '2017-04-01').primaryConnectionString]"
+              },
+              {
+                "name": "Organisations_QueueConnection",
+                "value": "[listKeys(resourceId(parameters('sharedResourceGroup'), 'Microsoft.ServiceBus/namespaces/queues/authorizationRules', parameters('serviceBusAccountName'), variables('serviceBusQueueName'), variables('serviceBusSasTokenName')), '2017-04-01').primaryConnectionString]"
+              },
+              {
+                "name": "Venues_QueueConnection",
+                "value": "[listKeys(resourceId(parameters('sharedResourceGroup'), 'Microsoft.ServiceBus/namespaces/queues/authorizationRules', parameters('serviceBusAccountName'), variables('serviceBusQueueName'), variables('serviceBusSasTokenName')), '2017-04-01').primaryConnectionString]"
+              },
+              {
+                "name": "Apprenticeships_CosmosConnection",
+                "value": "[listConnectionStrings(resourceId(parameters('sharedResourceGroup'), 'Microsoft.DocumentDB/databaseAccounts', parameters('cosmosDbAccountName')), '2019-12-12').connectionStrings[0].connectionString]"
+              },
+              {
+                "name": "Organisations_CosmosConnection",
+                "value": "[listConnectionStrings(resourceId(parameters('sharedResourceGroup'), 'Microsoft.DocumentDB/databaseAccounts', parameters('cosmosDbAccountName')), '2019-12-12').connectionStrings[0].connectionString]"
+              },
+              {
+                "name": "Venues_CosmosConnection",
+                "value": "[listConnectionStrings(resourceId(parameters('sharedResourceGroup'), 'Microsoft.DocumentDB/databaseAccounts', parameters('cosmosDbAccountName')), '2019-12-12').connectionStrings[0].connectionString]"
+              },
+              {
+                "name": "Apprenticeships_WatchDatabase",
+                "value": "[parameters('cosmosDbDatabaseName')]"
+              },
+              {
+                "name": "Apprenticeships_WatchCollection",
+                "value": "apprenticeships"
+              },
+              {
+                "name": "Organisations_WatchDatabase",
+                "value": "[parameters('cosmosDbDatabaseName')]"
+              },
+              {
+                "name": "Organisations_WatchCollection",
+                "value": "ukrlp"
+              },
+              {
+                "name": "Venues_WatchDatabase",
+                "value": "[parameters('cosmosDbDatabaseName')]"
+              },
+              {
+                "name": "Venues_WatchCollection",
+                "value": "venues"
               }
             ]
           },

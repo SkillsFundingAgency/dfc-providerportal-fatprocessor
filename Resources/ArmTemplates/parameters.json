@@ -13,6 +13,18 @@
     },
     "storageConnectionString": {
       "value": "__providerPortalStorageConnectionStr__"
+    },
+    "serviceBusAccountName": {
+      "value": "__providerPortalServiceBusName__"
+    },
+    "cosmosDbAccountName": {
+      "value": "__providerPortalCosmosDBName__"
+    },
+    "sharedResourceGroup": {
+      "value": "__providerPortalResourceGroup__"
+    },
+    "cosmosDbDatabaseName": {
+      "value": "__providerPortalCosmosDbAccDatabaseName__"
     }
   }
 }
