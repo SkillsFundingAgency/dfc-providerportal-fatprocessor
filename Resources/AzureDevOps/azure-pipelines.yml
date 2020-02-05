@@ -1,5 +1,5 @@
 variables:
-    SolutionBaseName: 'Dfc.ProviderPortal.FatProcessor.PublicApi'
+    SolutionBaseName: 'Dfc.ProviderPortal.FatProcessor'
     BuildPlatform: 'any cpu'
     BuildConfiguration: 'release'
 
@@ -12,30 +12,37 @@ resources:
     ref: refs/tags/v1.10.3
     endpoint: 'GitHub (ESFA)'
 
+pool:
+  name: NCS - CI and CD
+  demands:
+  - msbuild
+  - visualstudio
+
 stages:
 - stage: Build
   displayName: Build, Test and Analyze
   jobs:
   - job: BuildTestAndAnalyze
-    pool:
-      name: NCS - CI and CD
-      demands:
-      - msbuild
-      - visualstudio
     steps:
+    - template: AzureDevOpsTemplates\Build\StepTemplates\dfc-arm-build.yml@dfc-devops
+      parameters:
+        ArmTemplateRoot: '$(System.DefaultWorkingDirectory)\Resources\ArmTemplates'
+        SolutionBaseName: '${{ variables. SolutionBaseName }}'
+        PublishPipelineArtifact: true
+
     - template: AzureDevOpsTemplates\Build\StepTemplates\dfc-dotnetcore-build.yml@dfc-devops
       parameters:
-        SolutionBaseName: 'Dfc.ProviderPortal.FatProcessor.PublicApi'
-        BuildPlatform: 'any cpu'
-        BuildConfiguration: 'release'
+        SolutionBaseName: '${{ variables.SolutionBaseName }}.PublicApi'
+        BuildPlatform: '${{ variables.BuildPlatform }}'
+        BuildConfiguration: '${{ varianles.BuildConfiguration }}'
         DotNetCoreVersion: '3.1.101'
         PublishWebApp: true
         TestSuffix: UnitTests
 
     - template: AzureDevOpsTemplates\Build\StepTemplates\dfc-dotnetcore-build-notests.yml@dfc-devops
       parameters:
-        SolutionBaseName: 'Dfc.ProviderPortal.FatProcessor.Functions'
-        BuildPlatform: 'any cpu'
-        BuildConfiguration: 'release'
+        SolutionBaseName: '${{ variables.SolutionBaseName }}.Functions'
+        BuildPlatform: '${{ variables.BuildPlatform }}'
+        BuildConfiguration: '${{ varianles.BuildConfiguration }}'
         DotNetCoreVersion: '3.1.101'
         PublishWebApp: true
