@@ -1,5 +1,5 @@
 variables:
-    SolutionBaseName: 'Dfc.ProviderPortal.FatProcessor'
+    SolutionBaseName: 'Dfc.ProviderPortal.FatProcessor.PublicApi'
     BuildPlatform: 'any cpu'
     BuildConfiguration: 'release'
 
@@ -25,9 +25,17 @@ stages:
     steps:
     - template: AzureDevOpsTemplates\Build\StepTemplates\dfc-dotnetcore-build.yml@dfc-devops
       parameters:
-        SolutionBaseName: $(SolutionBaseName)
+        SolutionBaseName: 'Dfc.ProviderPortal.FatProcessor.PublicApi'
         BuildPlatform: 'any cpu'
         BuildConfiguration: 'release'
         DotNetCoreVersion: '3.1.101'
         PublishWebApp: true
         TestSuffix: UnitTests
+
+    - template: AzureDevOpsTemplates\Build\StepTemplates\dfc-dotnetcore-build-notests.yml@dfc-devops
+      parameters:
+        SolutionBaseName: 'Dfc.ProviderPortal.FatProcessor.Functions'
+        BuildPlatform: 'any cpu'
+        BuildConfiguration: 'release'
+        DotNetCoreVersion: '3.1.101'
+        PublishWebApp: true
