@@ -57,6 +57,7 @@
     "functionAppInsightName": "[concat(variables('functionAppName'),'-ai')]",
     "publicApiAppName": "[concat(parameters('appPrefix'),'-as')]",
     "publicApiAppInsightName": "[concat(variables('publicApiAppName'),'-ai')]",
+    "serviceBusQueueName": "fat-processor",
     "serviceBusSasTokenName": "monitor-fat-processor"
   },
   "resources": [
@@ -150,15 +151,15 @@
               },
               {
                 "name": "Apprenticeships_QueueConnection",
-                "value": "[listKeys(resourceId(parameters('sharedResourceGroup'), 'Microsoft.ServiceBus/namespaces/queues/authorizationRules', parameters('serviceBusAccountName'),  variables('serviceBusSasTokenName')), '2017-04-01').primaryConnectionString]"
+                "value": "[listKeys(resourceId(parameters('sharedResourceGroup'), 'Microsoft.ServiceBus/namespaces/queues/authorizationRules', parameters('serviceBusAccountName'), variables('serviceBusQueueName'), variables('serviceBusSasTokenName')), '2017-04-01').primaryConnectionString]"
               },
               {
                 "name": "Organisations_QueueConnection",
-                "value": "[listKeys(resourceId(parameters('sharedResourceGroup'), 'Microsoft.ServiceBus/namespaces/queues/authorizationRules', parameters('serviceBusAccountName'),  variables('serviceBusSasTokenName')), '2017-04-01').primaryConnectionString]"
+                "value": "[listKeys(resourceId(parameters('sharedResourceGroup'), 'Microsoft.ServiceBus/namespaces/queues/authorizationRules', parameters('serviceBusAccountName'), variables('serviceBusQueueName'), variables('serviceBusSasTokenName')), '2017-04-01').primaryConnectionString]"
               },
               {
                 "name": "Venues_QueueConnection",
-                "value": "[listKeys(resourceId(parameters('sharedResourceGroup'), 'Microsoft.ServiceBus/namespaces/queues/authorizationRules', parameters('serviceBusAccountName'),  variables('serviceBusSasTokenName')), '2017-04-01').primaryConnectionString]"
+                "value": "[listKeys(resourceId(parameters('sharedResourceGroup'), 'Microsoft.ServiceBus/namespaces/queues/authorizationRules', parameters('serviceBusAccountName'), variables('serviceBusQueueName'), variables('serviceBusSasTokenName')), '2017-04-01').primaryConnectionString]"
               },
               {
                 "name": "Apprenticeships_CosmosConnection",
