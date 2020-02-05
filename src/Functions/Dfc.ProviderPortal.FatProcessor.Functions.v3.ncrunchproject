@@ -1,8 +1,0 @@
-﻿<ProjectConfiguration>
-  <Settings>
-    <AdditionalFilesToIncludeForProject>
-      <Value>bin\Debug\netcoreapp3.0\bin\**.*</Value>
-    </AdditionalFilesToIncludeForProject>
-    <IgnoreThisComponentCompletely>True</IgnoreThisComponentCompletely>
-  </Settings>
-</ProjectConfiguration>

@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfc.ProviderPortal.FatProcessor.PublicApi", "src\PublicApi\Dfc.ProviderPortal.FatProcessor.PublicApi.csproj", "{E1382354-604B-481D-AE6E-294CC77F8695}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfc.ProviderPortal.FatProcessor.PublicApi", "Dfc.ProviderPortal.FatProcessor.PublicApi\Dfc.ProviderPortal.FatProcessor.PublicApi.csproj", "{E1382354-604B-481D-AE6E-294CC77F8695}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfc.ProviderPortal.FatProcessor.Domain", "src\Domain\Dfc.ProviderPortal.FatProcessor.Domain.csproj", "{9C7085A8-194A-438A-A231-C64FB03EE380}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfc.ProviderPortal.FatProcessor.Domain", "Dfc.ProviderPortal.FatProcessor.Domain\Dfc.ProviderPortal.FatProcessor.Domain.csproj", "{9C7085A8-194A-438A-A231-C64FB03EE380}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfc.ProviderPortal.FatProcessor.Functions", "src\Functions\Dfc.ProviderPortal.FatProcessor.Functions.csproj", "{B4DD0DF8-5C82-45ED-9815-29EE1421E8B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfc.ProviderPortal.FatProcessor.Functions", "Dfc.ProviderPortal.FatProcessor.Functions\Dfc.ProviderPortal.FatProcessor.Functions.csproj", "{B4DD0DF8-5C82-45ED-9815-29EE1421E8B5}"
 	ProjectSection(ProjectDependencies) = postProject
 		{9C7085A8-194A-438A-A231-C64FB03EE380} = {9C7085A8-194A-438A-A231-C64FB03EE380}
 	EndProjectSection
@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{16C1090D-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{20F453CE-799D-4565-993B-EC79B6D2E0FB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfc.ProviderPortal.FatProcessor.UnitTests", "test\UnitTests\Dfc.ProviderPortal.FatProcessor.UnitTests.csproj", "{EDD30AD2-7EA5-4AD3-AF11-0589D79B1840}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dfc.ProviderPortal.FatProcessor.PublicApi.UnitTests", "Dfc.ProviderPortal.FatProcessor.PublicApi.UnitTests\Dfc.ProviderPortal.FatProcessor.PublicApi.UnitTests.csproj", "{EDD30AD2-7EA5-4AD3-AF11-0589D79B1840}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +47,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{E1382354-604B-481D-AE6E-294CC77F8695} = {16C1090D-B61F-474B-B590-E5A2C675B1D3}
 		{B4DD0DF8-5C82-45ED-9815-29EE1421E8B5} = {16C1090D-B61F-474B-B590-E5A2C675B1D3}
+		{EDD30AD2-7EA5-4AD3-AF11-0589D79B1840} = {20F453CE-799D-4565-993B-EC79B6D2E0FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DDC589AC-54D5-4583-B623-237946D260E1}
