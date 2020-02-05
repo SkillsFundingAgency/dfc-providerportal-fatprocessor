@@ -77,7 +77,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "ppcourseAppService",
+      "name": "ppFatProcFunctionAppService",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
         "ppFatProcFuncAppInsights"
@@ -133,7 +133,7 @@
     },
     {
       "apiVersion": "2017-05-10",
-      "name": "ppcourseAppService",
+      "name": "ppFatProcPublicApiAppService",
       "type": "Microsoft.Resources/deployments",
       "dependsOn": [
         "ppFatProcPublicApiAppInsights"
