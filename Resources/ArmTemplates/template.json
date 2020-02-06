@@ -150,6 +150,10 @@
                 "value": "1"
               },
               {
+                "name": "FUNCTIONS_WORKER_RUNTIME",
+                "value": "dotnet"
+              },
+              {
                 "name": "Apprenticeships_QueueConnection",
                 "value": "[listKeys(resourceId(parameters('sharedResourceGroup'), 'Microsoft.ServiceBus/namespaces/queues/authorizationRules', parameters('serviceBusAccountName'), variables('serviceBusQueueName'), variables('serviceBusSasTokenName')), '2017-04-01').primaryConnectionString]"
               },
@@ -200,7 +204,7 @@
             ]
           },
           "deployStagingSlot": {
-            "value": false
+            "value": true
           }
         }
       }
@@ -248,7 +252,7 @@
             ]
           },
           "deployStagingSlot": {
-            "value": false
+            "value": true
           }
         }
       }
