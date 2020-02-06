@@ -200,7 +200,7 @@
             ]
           },
           "deployStagingSlot": {
-            "value": false
+            "value": true
           }
         }
       }
@@ -248,7 +248,7 @@
             ]
           },
           "deployStagingSlot": {
-            "value": false
+            "value": true
           }
         }
       }
