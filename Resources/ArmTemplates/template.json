@@ -55,8 +55,6 @@
     "deploymentUrlBase": "https://raw.githubusercontent.com/SkillsFundingAgency/dfc-devops/master/ArmTemplates/",
     "functionAppName": "[concat(parameters('appPrefix'),'-fa')]",
     "functionAppInsightName": "[concat(variables('functionAppName'),'-ai')]",
-    "publicApiAppName": "[concat(parameters('appPrefix'),'-as')]",
-    "publicApiAppInsightName": "[concat(variables('publicApiAppName'),'-ai')]",
     "serviceBusQueueName": "fat-processor",
     "serviceBusSasTokenName": "monitor-fat-processor"
   },
@@ -74,26 +72,6 @@
         "parameters": {
           "appInsightsName": {
             "value": "[variables('functionAppInsightName')]"
-          },
-          "attachedService": {
-            "value": "[variables('functionAppName')]"
-          }
-        }
-      }
-    },
-    {
-      "apiVersion": "2017-05-10",
-      "name": "ppFatProcPublicApiAppInsights",
-      "type": "Microsoft.Resources/deployments",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[concat(variables('deploymentUrlBase'),'application-insights.json')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "appInsightsName": {
-            "value": "[variables('publicApiAppInsightName')]"
           },
           "attachedService": {
             "value": "[variables('functionAppName')]"
@@ -200,54 +178,6 @@
               {
                 "name": "Venues_WatchCollection",
                 "value": "venues"
-              }
-            ]
-          },
-          "deployStagingSlot": {
-            "value": true
-          }
-        }
-      }
-    },
-    {
-      "apiVersion": "2017-05-10",
-      "name": "ppFatProcPublicApiAppService",
-      "type": "Microsoft.Resources/deployments",
-      "dependsOn": [
-        "ppFatProcPublicApiAppInsights"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[concat(variables('deploymentUrlBase'),'app-service.json')]",
-          "contentVersion": "1.0.0.0"
-        },
-        "parameters": {
-          "appServiceName": {
-            "value": "[variables('publicApiAppName')]"
-          },
-          "appServicePlanName": {
-            "value": "[parameters('appServicePlanName')]"
-          },
-          "appServicePlanResourceGroup": {
-            "value": "[parameters('appServicePlanResourceGroup')]"
-          },
-          "appServiceType": {
-            "value": "app"
-          },
-          "appServiceAppSettings": {
-            "value": [
-              {
-                "name": "APPINSIGHTS_INSTRUMENTATIONKEY",
-                "value": "[reference('ppFatProcPublicApiAppInsights').outputs.InstrumentationKey.value]"
-              },
-              {
-                "name": "MSDEPLOY_RENAME_LOCKED_FILES",
-                "value": "1"
-              },
-              {
-                "name": "WEBSITE_RUN_FROM_PACKAGE",
-                "value": "1"
               }
             ]
           },
